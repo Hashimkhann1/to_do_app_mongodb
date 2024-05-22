@@ -17,6 +17,14 @@ const userSchema = Schema({
     }
 });
 
+userSchema.methods.comparePassword = async function(userPassword) {
+    try{
+        const isMatch = bcrypt.compare(userPassword,this.password);
+        return isMatch;
+    }catch(err){
+        throw err;
+    }
+}
 
 userSchema.pre('save',async function() {
     try{
@@ -29,6 +37,9 @@ userSchema.pre('save',async function() {
         throw err;
     }
 });
+
+
+
 
 const UserModel = db.model('user',userSchema);
 
