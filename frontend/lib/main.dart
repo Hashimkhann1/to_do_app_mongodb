@@ -2,14 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:frontend/dashboard.dart';
 import 'package:frontend/loginPage.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences preferences = await SharedPreferences.getInstance();
+  runApp(MyApp(token: preferences.getString('token'),));
 }
 
 class MyApp extends StatelessWidget {
   final token;
-  const MyApp({
+   MyApp({
     @required this.token,
     Key? key,
   }): super(key: key);
