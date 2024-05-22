@@ -24,37 +24,39 @@ class _SignInPageState extends State<SignInPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    initSharedPref();
+    initSharedPreferences();
   }
 
-  void initSharedPref() async{
+  void initSharedPreferences() async {
     prefs = await SharedPreferences.getInstance();
   }
 
-  void loginUser() async{
+
+  void loginUser() async {
     if(emailController.text.isNotEmpty && passwordController.text.isNotEmpty){
 
-      var reqBody = {
-        "email":emailController.text,
-        "password":passwordController.text
+      var registerBody = {
+        "email" : emailController.text,
+        "password" : passwordController.text
       };
 
-      var response = await http.post(Uri.parse(login),
+      var responce = await http.post(Uri.parse(login),
           headers: {"Content-Type":"application/json"},
-          body: jsonEncode(reqBody)
+          body: jsonEncode(registerBody)
       );
 
-      var jsonResponse = jsonDecode(response.body);
-      if(jsonResponse['status']){
-        var myToken = jsonResponse['token'];
+      var jsonResponce = jsonDecode(responce.body);
+      if(jsonResponce['status']){
+        var myToken = jsonResponce['token'];
         prefs.setString('token', myToken);
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>Dashboard(token: myToken)));
+        Navigator.push(context, MaterialPageRoute(builder: (context) => Dashboard(token: myToken)));
       }else{
-        print('Something went wrong');
+        print('Some thing went wrong');
       }
 
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -118,7 +120,7 @@ class _SignInPageState extends State<SignInPage> {
         ),
         bottomNavigationBar: GestureDetector(
           onTap: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context)=>Registration()));
+            Navigator.push(context, MaterialPageRoute(builder: (context) => Registration()));
           },
           child: Container(
               height: 25,
