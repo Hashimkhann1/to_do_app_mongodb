@@ -66,23 +66,16 @@ class _SignInPageState extends State<SignInPage> {
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-                colors: [const Color(0XFFF95A3B),const Color(0XFFF96713)],
-                begin: FractionalOffset.topLeft,
-                end: FractionalOffset.bottomCenter,
-                stops: [0.0,0.8],
-                tileMode: TileMode.mirror
-            ),
           ),
           child: Center(
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  CommonLogo(),
-                  HeightBox(10),
-                  "Email Sign-In".text.size(22).yellow100.make(),
-
+                  // CommonLogo(),
+                  // HeightBox(10),
+                  Text("Sign in" ,style: TextStyle(color: Colors.green,fontSize: 30,fontWeight: FontWeight.bold),),
+                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.05,),
                   TextField(
                     controller: emailController,
                     keyboardType: TextInputType.text,
@@ -103,15 +96,24 @@ class _SignInPageState extends State<SignInPage> {
                         hintText: "Password",
                         errorText: _isNotValidate ? "Enter Proper Info" : null,
                         border: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.green),
                             borderRadius: BorderRadius.all(Radius.circular(10.0)))),
                   ).p4().px24(),
+
+                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.02,),
                   GestureDetector(
                     onTap: (){
                       loginUser();
                     },
-                    child: HStack([
-                      VxBox(child: "LogIn".text.white.makeCentered().p16()).green600.roundedLg.make(),
-                    ]),
+                    child: Container(
+                      alignment: Alignment.center,
+                      width: MediaQuery.sizeOf(context).width * 0.50, 
+                        height: MediaQuery.sizeOf(context).width * 0.10,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(12),
+                        color: Colors.green
+                      ),
+                        child: Text("Sign in",style: TextStyle(color: Colors.white,fontSize: 18,fontWeight:FontWeight.w600),))
                   ),
                 ],
               ),
@@ -123,9 +125,11 @@ class _SignInPageState extends State<SignInPage> {
             Navigator.push(context, MaterialPageRoute(builder: (context) => Registration()));
           },
           child: Container(
+            alignment: Alignment.center,
               height: 25,
-              color: Colors.lightBlue,
-              child: Center(child: "Create a new Account..! Sign Up".text.white.makeCentered())),
+              // color: Colors.lightBlue,
+              child: Text("Create a new Account..! Sign Up",style: TextStyle(color: Colors.black,fontSize: 18),)
+          ),
         ),
       ),
     );
