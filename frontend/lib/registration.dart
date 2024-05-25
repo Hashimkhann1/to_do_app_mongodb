@@ -56,22 +56,14 @@ class _RegistrationState extends State<Registration> {
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           decoration: const BoxDecoration(
-            gradient: LinearGradient(
-                colors: [Color(0XFFF95A3B),Color(0XFFF96713)],
-                begin: FractionalOffset.topLeft,
-                end: FractionalOffset.bottomCenter,
-                stops: [0.0,0.8],
-                tileMode: TileMode.mirror
-            ),
           ),
           child: Center(
             child: SingleChildScrollView(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  CommonLogo(),
-                  const HeightBox(10),
-                  "CREATE YOUR ACCOUNT".text.size(22).yellow100.make(),
+                  Text("Sign Up" ,style: TextStyle(color: Colors.green,fontSize: 30,fontWeight: FontWeight.bold),),
+                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.05,),
                   TextField(
                     controller: emailController,
                     keyboardType: TextInputType.text,
@@ -107,22 +99,28 @@ class _RegistrationState extends State<Registration> {
                         border: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(10.0)))),
                   ).p4().px24(),
-                  HStack([
-                    GestureDetector(
+                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.02,),
+                  GestureDetector(
                       onTap: ()=>{
                         registerUser()
                       },
-                      child: VxBox(child: "Register".text.white.makeCentered().p16()).green600.roundedLg.make().px16().py16(),
-                    ),
-                  ]),
+                      child: Container(
+                          alignment: Alignment.center,
+                          width: MediaQuery.sizeOf(context).width * 0.50,
+                          height: MediaQuery.sizeOf(context).width * 0.10,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              color: Colors.green
+                          ),
+                          child: Text("Sign up",style: TextStyle(color: Colors.white,fontSize: 18,fontWeight:FontWeight.w600),))
+                  ),
                   GestureDetector(
                     onTap: (){
-                      print("Sign In");
                       Navigator.push(context, MaterialPageRoute(builder: (context)=>SignInPage()));
                     },
                     child: HStack([
                       "Already Registered?".text.make(),
-                      " Sign In".text.white.make()
+                      " Sign In".text.green800.make()
                     ]).centered(),
                   )
                 ],
