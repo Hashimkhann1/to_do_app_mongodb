@@ -10,6 +10,10 @@ const todoSchema = Schema({
     desc:{
         type:String,
         require:true
+    },
+    date:{
+        type: Date,
+        default: Date.now
     }
 });
 
