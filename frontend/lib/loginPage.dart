@@ -90,6 +90,7 @@ class _SignInPageState extends State<SignInPage> {
                   TextField(
                     controller: passwordController,
                     keyboardType: TextInputType.text,
+                    obscureText: true,
                     decoration: InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
