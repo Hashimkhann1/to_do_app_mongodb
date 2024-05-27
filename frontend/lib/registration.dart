@@ -79,6 +79,7 @@ class _RegistrationState extends State<Registration> {
                   TextField(
                     controller: passwordController,
                     keyboardType: TextInputType.text,
+                    obscureText: true,
                     decoration: InputDecoration(
                         suffixIcon: IconButton(icon: const Icon(Icons.copy),onPressed: (){
                           final data = ClipboardData(text: passwordController.text);
@@ -114,6 +115,7 @@ class _RegistrationState extends State<Registration> {
                           ),
                           child: Text("Sign up",style: TextStyle(color: Colors.white,fontSize: 18,fontWeight:FontWeight.w600),))
                   ),
+                  SizedBox(height: MediaQuery.sizeOf(context).height * 0.02,),
                   GestureDetector(
                     onTap: (){
                       Navigator.push(context, MaterialPageRoute(builder: (context)=>SignInPage()));
