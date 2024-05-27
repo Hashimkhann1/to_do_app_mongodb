@@ -1,9 +1,14 @@
 const mongoose = require('mongoose');
 const db = require('../config/db');
+const UserModel = require('./user_model');
 
 const { Schema } = mongoose;
 
 const todoSchema = Schema({
+    userId: {
+        type: Schema.Types.ObjectId,
+        ref:UserModel.modelName
+    },
     title: {
         type:String
     },
